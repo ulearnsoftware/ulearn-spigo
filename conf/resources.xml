@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<layout>
+    <menu id="root" type="container">
+        <item id="contenido">
+            <label>Contenido</label>
+            <description>Contenido de la materia</description>
+            <link ref="submenu_contenido"/>
+        </item>
+        <item id="recursos">
+            <label>Recursos</label>
+            <description>Recursos disponibles de la materia</description>
+            <link ref="submenu_recursos"/>
+        </item>
+        <item id="agenda">
+            <label>Agenda</label>
+            <description>Agenda de la materia</description>
+            <link ref="submenu_agenda"/>
+        </item>
+        <item id="colaboracion">
+            <label>Colaboración</label>
+            <description>Foros de Colaboración de la materia</description>
+            <link ref="submenu_colaboracion"/>
+        </item>
+         <item id="chat">
+            <label>Conversación</label>
+            <description>Conversación</description>
+            <link ref="submenu_chat"/>
+        </item>
+        <item id="calificable">
+            <label>Calificable</label>
+            <description>Calificables de la materia</description>
+            <link ref="submenu_calificable"/>
+        </item>
+        <item id="notas">
+            <label>Notas</label>
+            <description>Listado de Notas</description>
+            <link ref="submenu_notas"/>
+        </item>
+        <item id="Opciones">
+            <label>Opciones</label>
+            <description>Opciones del sistema</description>
+            <link ref="submenu_opciones"/>
+        </item>
+        <item id="Administracion">
+            <label>Administración</label>
+            <description>Administracion del Sistema</description>
+            <link ref="submenu_administracion"/>
+        </item>
+        <item id="ACL">
+            <label>ACL</label>
+            <description>Administracion de Permisos (Access Control List)</description>
+            <link ref="submenu_acl"/>
+        </item>
+    </menu>
+    <menu id="submenu_contenido" type="submenu">
+        <item id="con_lista">
+        <label>Listado de Contenidos</label>
+        <description>Listado de contenidos disponibles de la materia</description>
+        <module name="con_lista"/>
+        </item>
+    </menu>
+    <menu id="submenu_recursos" type="submenu">
+        <item id="rec_lista">
+        <label>Listado de Recursos</label>
+        <description>Listado de recursos disponibles de la materia</description>
+        <module name="rec_lista"/>
+        </item>
+        <item id="rec_opciones">
+        <label>Opciones Administración</label>
+        <description>Opciones de Administración sobre Recursos</description>
+        <module name="rec_opciones"/>
+        </item>
+    </menu>
+    <menu id="submenu_agenda" type="submenu">
+        <item id="cart_lista">
+        <label>Cartelera</label>
+        <description>Listado de eventos disponibles de la materia</description>
+        <module name="cart_lista"/>
+        </item>
+        <item id="ag_lista">
+        <label>Listado de Eventos</label>
+        <description>Listado de eventos disponibles de la materia</description>
+        <module name="ag_lista"/>
+        </item>
+        <item id="ag_calendario">
+        <label>Calendario</label>
+        <description>Listado de eventos disponibles de la materia</description>
+        <module name="ag_calendario"/>
+        </item>
+    </menu>
+    <menu id="submenu_colaboracion" type="submenu">
+        <item id="col_foros">
+        <label>Listado de Foros</label>
+        <description>Foros disponibles de la materia</description>
+        <module name="col_foros"/>
+        </item>
+    </menu>
+     <menu id="submenu_chat" type="submenu">
+        <item id="chat">
+        <label>Sala de Conversación</label>
+        <description>Sala de Conversación disponible para la materia</description>
+        <module name="chat"/>
+        </item>
+    </menu>
+    <menu id="submenu_calificable" type="submenu">
+        <item id="calf_lista">
+        <label>Listado de Calificables</label>
+        <description>Calificables disponibles de la materia</description>
+        <module name="calf_lista"/>
+        </item>
+        <item id="calf_asignar">
+        <label>Asignación de Calificables</label>
+        <description>Estudiantes de la materia a los que se les puede asignar uno o varios Calificables</description>
+        <module name="calf_asignar"/>
+        </item>
+        <item id="calf_calificar">
+        <label>Calificar Calificables</label>
+        <description>El profesor puede calificar las preguntas de tipo Abierto de los Estudiantes</description>
+        <module name="calf_calificar"/>
+        </item>
+        <item id="calf_tomar">
+        <label>Tomar Calificable</label>
+        <description>Calificables disponibles de la materia</description>
+        <module name="calf_tomar"/>
+        </item>
+    </menu>
+    <menu id="submenu_notas" type="submenu">
+        <item id="not_lista">
+        <label>Listado de Notas</label>
+        <description></description>
+        <module name="not_lista"/>
+        </item>
+        <item id="not_notas_alumno">
+        <label>Notas x Alumno</label>
+        <description></description>
+        <module name="not_notas_alumno"/>
+        </item>
+    </menu>
+    <menu id="submenu_opciones" type="submenu">
+        <item id="opc_cambioclave">
+            <label>Cambio de Clave</label>
+            <description></description>
+            <module name="opc_cambioclave"/>
+        </item>
+    </menu>
+    <menu id="submenu_acl" type="submenu">
+        <item id="acl_perfiles">
+            <label>Perfiles Grupo</label>
+            <description></description>
+            <module name="acl_perfiles"/>
+        </item>
+        <item id="acl_materias_grupo">
+            <label>Materias x Grupo</label>
+            <description></description>
+            <module name="acl_materias_grupo"/>
+        </item>
+    </menu>
+    <menu id="submenu_administracion" type="submenu">
+         <item id="adm_eliminar_materias">
+            <label>Eliminar Materias</label>
+            <description></description>
+            <module name="adm_eliminar_materias"/>
+        </item>
+    </menu>
+</layout>

@@ -1,0 +1,116 @@
+Ulearn - Installación
+-------------------------
+   ______________________________________________________________________
+
+   Requerimientos    -    Introducción    -    Instalación   -
+   Creditos 
+   ______________________________________________________________________
+
+                                Ulearn
+
+     
+Requerimientos
+
+     * Se requiere tener instalado un Servidor Web  con soporte  para PHP 
+       version 4.3.X o superior.
+     * Servidor de Base de Datos MySQL 4.1.10 o superior.
+
+
+Introducción
+
+   Ulearn es un sistema de eduación a distancia que se integra con el 
+   sistema académico Spigo
+   
+        
+Instalación
+
+   1. Copie  la carpeta  con  el contenido del programa en la carpeta 
+      htdocs del servidor web. Por ejemplo en algunos servidores podria 
+      ser:     /var/www/html/ulearn
+      
+   2. En la carpeta ulearn/install se encuentran el archivo:
+          mysql.sql
+          
+      Este  archivo  contiene  la  estructura de tablas requeridas por
+      el sistema. Es necesario crear un usuario para la base de datos con
+      los permisos necesarios. En  el shell del sistema  ubiquese  en  la
+      carpeta ulearn/install. Ejecute  el  cliente  de  línea  de comandos
+      de MySQL: 
+          mysql -u root -p 
+      Es importante que se seleccione un usuario  privilegiado de la base
+      de datos, puesto que se procederá a crear una base de datos nueva.
+      
+      Ejecute los comandos: 
+          mysql> create database ulearn;
+          mysql> use ulearn;
+      
+      Luego de cambiar a la base de datos se deben ejecutar el comando:
+          mysql> source mysql.sql
+          
+   3. El  comando  source  ejecuta  las  sentencias  SQL del  archivo 
+      creando las tablas requeridas por el sistema. Si  la  ejecución del
+      script fue exitosa, se procede a crear un usuario de base de  datos 
+      para el software Ulearn:
+      
+      mysql> GRANT ALL ON ulearn.* TO <ulearnuser>@localhost IDENTIFIED BY 
+             '<ulearnpass>';
+   
+      ATENCION:  El usuario de  SQL creado en  este paso NO ES EL USUARIO 
+      ADMINISTRATIVO  del  sistema  Ulearn, NI USUARIO  ALGUNO DEL SISTEMA
+      OPERATIVO. Este usuario de  SQL es la credencial requerida para que 
+      el software pueda conectarse a la base de datos.
+   
+   4. Localice el archivo default.conf.php. Este  archivo se encuentra en 
+      la carpeta ulearn/conf.  En  este archivo se encuentran una serie de
+      asignaciones de configuración, ubique la linea:
+      
+      $config->dsn  = "mysql://ulearn:test@localhost/ulearn";
+      
+      Y reemplaze el usuario  "ulearn"  y la clave  "test"  por el usuario
+      creado en la sentencia GRANT.
+   
+   5. Ahora se puede probar el sistema a través de la  pagina  Web. El 
+      sistema Ulearn requiere que se copie el contenido de usuarios, materias,
+      docentes, alumnos, etc, desde el sistema Spigo. Esto quiere decir que
+      los mismos usuarios del sistema Spigo están presentes en el sistema
+      Ulearn.  Para copiar las tablas necesarias ubiquese en el menú 
+      Administración en el sistema Spigo, escoja el submenú "Actualizar 
+      Ulearn", seleccione todas las casillas de verificación y presione 
+      Actualizar.
+
+      Nota: Para que el sistema Spigo se pueda conectar a la base de datos del
+      Ulearn y viceversa es necesario que existan los strings de conexión en
+      los archivos de configuración de ambos sistemas:
+      
+      1) spigo/conf/default.conf.php debe tener:  
+      
+         $config->dsn_ulearn= "mysql://ulearn:palosanto@localhost/ulearn";
+
+      2) ulearn/conf/default.conf.php debe tener:
+         
+         $config->dsn2 = "mysql://spigo:test@localhost/spigo";
+
+      Los usuarios y las claves de conexion deben ser cambiados dependiendo de los
+      usuarios de la base de datos creados en el sistema. NO SE DEBE CAMBIAR EL
+      NOMBRE DE LAS VARIABLES.
+
+   6. Para el almacenamiento de archivos el sistema Ulearn necesita directorios de
+      trabajo. La ruta de los directorios se especifica en el archivo 
+      ulearn/conf/default.conf.php y contiene las variables;
+      
+      $config->dir_base = "/opt/ulearn-spigo";
+      $config->dir_base_foros = "/opt/ulearn-spigo/foros";
+      $config->dir_base_calificables = "/opt/ulearn-spigo/calificables";
+
+      Se puede utilizar la carpeta /opt o cualquier otra ruta, que sea de preferencia
+      una carpeta fuera del directorio del servidor Web. Esto con la finalidad de 
+      evitar que el contenido pueda ser accedido directamente desde un browser.
+      
+      Para que el sistema pueda crear, modificar o eliminar archivos y/o carpetas, es
+      necesario que los directorios creados tengan como propietario el usuario con el
+      que esta corriendo el proceso del servidor web. Por ejemplo:
+      
+      chown apache.apache /opt/ulearn-spigo
+      chmod 700 /opt/ulearn-spigo
+      
+      
